@@ -55,5 +55,9 @@
       "scope": "source.liquid",
       "injection-regex": "^liquid$"
     }
-  ]
+  ],
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": true
+  }
 }
