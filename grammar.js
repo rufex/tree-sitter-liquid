@@ -112,6 +112,8 @@ module.exports = grammar({
         $.break_statement,
         $.continue_statement,
         $.custom_unpaired_statement,
+        $.translation_statement,
+        $.translation_expression,
       ),
 
     _tagged_paired_statment: ($) =>
@@ -152,6 +154,16 @@ module.exports = grammar({
         output($._expression),
       ),
 
+    translation_expression: ($) =>
+      seq(
+        't',
+        field('key', choice($.string, $.identifier)),
+        optional(
+          field('argument',
+            repeat($.argument),
+          ),
+        ),
+      ),
 
     // //////////////
     // Primitives //
@@ -357,6 +369,20 @@ module.exports = grammar({
         ')',
       ),
 
+
+    translation_statement: ($) =>
+      seq(
+        't=',
+        field('key', $.string),
+        repeat($.locale_declaration),
+      ),
+
+    locale_declaration: ($) =>
+      seq(
+        field('key', $.identifier),
+        ':',
+        field('value', $.string),
+      ),
 
     // /////////////////////
     // Paired Statements //

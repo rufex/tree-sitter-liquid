@@ -369,3 +369,79 @@ Include Jeykll with Error
     (string))
   (ERROR
     (identifier)))
+
+================================================================================
+Translation definition
+================================================================================
+
+<html>
+  {% t= "page_title" en:"Title" es:"Título" %}
+</html>
+
+--------------------------------------------------------------------------------
+  (program
+   (template_content)
+   (translation_statement
+    key: (string)
+    (locale_declaration
+     key: (identifier)
+     value: (string))
+    (locale_declaration
+     key: (identifier)
+     value: (string)))
+    (template_content))
+
+================================================================================
+Translation call with with string
+================================================================================
+
+<html>
+  {% t "page_title" %}
+</html>
+
+--------------------------------------------------------------------------------
+
+  (program
+   (template_content)
+   (translation_expression
+    key: (string))
+   (template_content))
+
+================================================================================
+Translation call with identifier
+================================================================================
+
+<html>
+  {% t page_title %}
+</html>
+
+--------------------------------------------------------------------------------
+
+  (program
+   (template_content)
+   (translation_expression
+    key: (identifier))
+   (template_content))
+
+================================================================================
+Translation call using variables
+================================================================================
+
+<html>
+  {% t "page_title" var:ref var_2:'Ref 2' %}
+</html>
+
+--------------------------------------------------------------------------------
+
+  (program
+   (template_content)
+   (translation_expression
+      key: (string)
+      argument: (argument
+        key: (identifier)
+        value: (identifier))
+      argument: (argument
+        key: (identifier)
+        value: (string)))
+   (template_content))
+

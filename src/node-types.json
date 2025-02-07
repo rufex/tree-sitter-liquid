@@ -325,6 +325,14 @@
           "named": true
         },
         {
+          "type": "translation_expression",
+          "named": true
+        },
+        {
+          "type": "translation_statement",
+          "named": true
+        },
+        {
           "type": "unless_statement",
           "named": true
         },
@@ -953,6 +961,14 @@
           "named": true
         },
         {
+          "type": "translation_expression",
+          "named": true
+        },
+        {
+          "type": "translation_statement",
+          "named": true
+        },
+        {
           "type": "unless_statement",
           "named": true
         }
@@ -1258,10 +1274,44 @@
           "named": true
         },
         {
+          "type": "translation_expression",
+          "named": true
+        },
+        {
+          "type": "translation_statement",
+          "named": true
+        },
+        {
           "type": "unless_statement",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "locale_declaration",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1505,6 +1555,7 @@
   {
     "type": "program",
     "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
@@ -1644,6 +1695,14 @@
         },
         {
           "type": "template_content",
+          "named": true
+        },
+        {
+          "type": "translation_expression",
+          "named": true
+        },
+        {
+          "type": "translation_statement",
           "named": true
         },
         {
@@ -1990,6 +2049,14 @@
           "named": true
         },
         {
+          "type": "translation_expression",
+          "named": true
+        },
+        {
+          "type": "translation_statement",
+          "named": true
+        },
+        {
           "type": "unless_statement",
           "named": true
         }
@@ -2058,6 +2125,62 @@
     "type": "template_content",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "translation_expression",
+    "named": true,
+    "fields": {
+      "argument": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "argument",
+            "named": true
+          }
+        ]
+      },
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "translation_statement",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "locale_declaration",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "unless_statement",
@@ -2483,6 +2606,14 @@
   },
   {
     "type": "style",
+    "named": false
+  },
+  {
+    "type": "t",
+    "named": false
+  },
+  {
+    "type": "t=",
     "named": false
   },
   {
