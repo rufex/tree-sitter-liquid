@@ -498,7 +498,7 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "([a-zA-Z][0-9a-zA-Z_\\?-]*)"
+      "value": "\\[?([a-zA-Z][0-9a-zA-Z_\\?-]*)\\]?"
     },
     "_literal": {
       "type": "CHOICE",

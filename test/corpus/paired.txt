@@ -469,6 +469,23 @@ Capture
    (template_content))
 
 ==================
+Capture with brackets around identifier
+==================
+
+<html>
+  {%- capture [title] -%}Text{%- endcapture %}
+</html>
+
+---
+  (program
+   (template_content)
+   (capture_statement
+    variable: (identifier)
+    value:
+      (block
+        (template_content)))
+   (template_content))
+==================
 Tablerow
 ==================
 

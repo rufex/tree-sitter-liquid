@@ -169,7 +169,8 @@ module.exports = grammar({
     // Primitives //
     // //////////////
 
-    identifier: (_) => /([a-zA-Z][0-9a-zA-Z_\?-]*)/,
+    // identifier: (_) => /([a-zA-Z][0-9a-zA-Z_\?-]*)/,
+    identifier: (_) => /\[?([a-zA-Z][0-9a-zA-Z_\?-]*)\]?/,
 
     _literal: ($) => choice($.string, $.number, $.boolean),
 
