@@ -1,11 +1,11 @@
 [package]
 name = "tree-sitter-liquid"
-description = "liquid grammar for the tree-sitter parsing library"
-version = "0.2.0"
+description = "Silverfin Liquid grammar for the tree-sitter parsing library"
+version = "0.3.0"
 keywords = ["incremental", "parsing", "liquid"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter/tree-sitter-javascript"
-edition = "2018"
+repository = "https://github.com/rufex/tree-sitter-liquid"
+edition = "2025"
 license = "MIT"
 
 build = "bindings/rust/build.rs"

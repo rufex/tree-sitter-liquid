@@ -6,15 +6,13 @@
       "camelcase": "liquid",
       "title": "liquid",
       "scope": "source.liquid",
-      "file-types": [
-        "liquid"
-      ],
+      "file-types": ["liquid"],
       "injection-regex": "^liquid$",
       "class-name": "TreeSitterLiquid"
     }
   ],
   "metadata": {
-    "version": "0.2.0",
+    "version": "0.3.0",
     "license": "MIT",
     "description": "liquid",
     "authors": [
@@ -23,7 +21,7 @@
       }
     ],
     "links": {
-      "repository": "https://github.com/tree-sitter/tree-sitter-liquid"
+      "repository": "https://github.com/rufex/tree-sitter-liquid"
     }
   },
   "bindings": {

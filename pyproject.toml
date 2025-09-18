@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tree-sitter-liquid"
-description = "Liquid grammar for tree-sitter"
-version = "0.2.0"
+description = "Silverfin Liquid grammar for tree-sitter"
+version = "0.3.0"
 keywords = ["incremental", "parsing", "tree-sitter", "liquid"]
 classifiers = [
   "Intended Audience :: Developers",

@@ -512,3 +512,54 @@ Translation call using variables
         value: (string)))
    (template_content))
 
+================================================================================
+Result - string
+================================================================================
+
+<html>
+  {% result "result_name" "result_content" %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (result_statement
+    result_name: (string)
+    result_value: (string))
+  (template_content))
+
+================================================================================
+Result - variable
+================================================================================
+
+<html>
+  {% result foo bar %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (result_statement
+    result_name: (identifier)
+    result_value: (identifier))
+  (template_content))
+
+================================================================================
+Result - bracket around identifier
+================================================================================
+
+<html>
+  {% result [foo] [bar] %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (result_statement
+    result_name: (identifier)
+    result_value: (identifier))
+  (template_content))
+

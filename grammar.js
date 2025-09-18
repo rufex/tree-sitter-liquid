@@ -114,6 +114,7 @@ module.exports = grammar({
         $.custom_unpaired_statement,
         $.translation_statement,
         $.translation_expression,
+        $.result_statement,
       ),
 
     _tagged_paired_statment: ($) =>
@@ -383,6 +384,13 @@ module.exports = grammar({
         field('key', $.identifier),
         ':',
         field('value', $.string),
+      ),
+
+    result_statement: ($) =>
+      seq(
+        'result',
+        field('result_name', choice($._literal, $.identifier)),
+        field('result_value', $._expression),
       ),
 
     // /////////////////////

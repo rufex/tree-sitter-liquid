@@ -297,6 +297,10 @@
           "named": true
         },
         {
+          "type": "result_statement",
+          "named": true
+        },
+        {
           "type": "schema_statement",
           "named": true
         },
@@ -933,6 +937,10 @@
           "named": true
         },
         {
+          "type": "result_statement",
+          "named": true
+        },
+        {
           "type": "schema_statement",
           "named": true
         },
@@ -1255,6 +1263,10 @@
         },
         {
           "type": "render_statement",
+          "named": true
+        },
+        {
+          "type": "result_statement",
           "named": true
         },
         {
@@ -1670,6 +1682,10 @@
           "named": true
         },
         {
+          "type": "result_statement",
+          "named": true
+        },
+        {
           "type": "schema_statement",
           "named": true
         },
@@ -1850,6 +1866,84 @@
     }
   },
   {
+    "type": "result_statement",
+    "named": true,
+    "fields": {
+      "result_name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "result_value": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "-}}",
+            "named": false
+          },
+          {
+            "type": "access",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "filter",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "predicate",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "{{",
+            "named": false
+          },
+          {
+            "type": "{{-",
+            "named": false
+          },
+          {
+            "type": "}}",
+            "named": false
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "schema_statement",
     "named": true,
     "fields": {},
@@ -2018,6 +2112,10 @@
         },
         {
           "type": "render_statement",
+          "named": true
+        },
+        {
+          "type": "result_statement",
           "named": true
         },
         {
@@ -2590,6 +2688,10 @@
   },
   {
     "type": "render",
+    "named": false
+  },
+  {
+    "type": "result",
     "named": false
   },
   {

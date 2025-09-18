@@ -258,6 +258,10 @@
         {
           "type": "SYMBOL",
           "name": "translation_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "result_statement"
         }
       ]
     },
@@ -1849,6 +1853,40 @@
           "content": {
             "type": "SYMBOL",
             "name": "string"
+          }
+        }
+      ]
+    },
+    "result_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "result"
+        },
+        {
+          "type": "FIELD",
+          "name": "result_name",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_literal"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "result_value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
           }
         }
       ]
