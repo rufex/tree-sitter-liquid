@@ -1,6 +1,15 @@
 # tree-sitter-liquid
 
-> [!IMPORTANT]
-> This grammar is highly experimental and may not work as expected.
-> It is also targetting [Silverfin's Liquid implementation](https://developer.silverfin.com/docs/where-to-start), which may differ from Shopify's Liquid.
+A grammar of [Silverfin's Liquid templating language](https://developer.silverfin.com/docs/where-to-start) to be used with [tree-sitter](https://tree-sitter.github.io/tree-sitter/).
 
+## Covered
+
+This grammar covers the following Silverfin specific Liquid tags and filters:
+
+- [Result](https://developer.silverfin.com/docs/result)
+- [Translations](https://developer.silverfin.com/docs/translations)
+- [Push & Pop](https://developer.silverfin.com/docs/push-pop)
+
+## Mentions
+
+This repository was originally forked from [tree-sitter-liquid](https://github.com/hankthetank27/tree-sitter-liquid)

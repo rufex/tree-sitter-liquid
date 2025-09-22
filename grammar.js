@@ -115,6 +115,8 @@ module.exports = grammar({
         $.translation_statement,
         $.translation_expression,
         $.result_statement,
+        $.push_statement,
+        $.pop_statement,
       ),
 
     _tagged_paired_statment: ($) =>
@@ -391,6 +393,24 @@ module.exports = grammar({
         'result',
         field('result_name', choice($._literal, $.identifier)),
         field('result_value', $._expression),
+      ),
+
+    push_statement: ($) =>
+      seq(
+        'push',
+        field('item', choice($.string, $.identifier)),
+        'to:',
+        field('array', $.identifier),
+        optional(seq('at:', field('at', $.identifier))),
+      ),
+
+    pop_statement: ($) =>
+      seq(
+        'pop',
+        field('item', choice($.string, $.identifier)),
+        'from:',
+        field('array', $.identifier),
+        optional(seq('at:', field('at', $.identifier))),
       ),
 
     // /////////////////////

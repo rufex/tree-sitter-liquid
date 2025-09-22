@@ -285,7 +285,15 @@
           "named": true
         },
         {
+          "type": "pop_statement",
+          "named": true
+        },
+        {
           "type": "predicate",
+          "named": true
+        },
+        {
+          "type": "push_statement",
           "named": true
         },
         {
@@ -925,7 +933,15 @@
           "named": true
         },
         {
+          "type": "pop_statement",
+          "named": true
+        },
+        {
           "type": "predicate",
+          "named": true
+        },
+        {
+          "type": "push_statement",
           "named": true
         },
         {
@@ -1258,7 +1274,15 @@
           "named": true
         },
         {
+          "type": "pop_statement",
+          "named": true
+        },
+        {
           "type": "predicate",
+          "named": true
+        },
+        {
+          "type": "push_statement",
           "named": true
         },
         {
@@ -1386,6 +1410,46 @@
           },
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "pop_statement",
+    "named": true,
+    "fields": {
+      "array": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "at": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "item": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "string",
             "named": true
           }
         ]
@@ -1670,7 +1734,15 @@
           "named": true
         },
         {
+          "type": "pop_statement",
+          "named": true
+        },
+        {
           "type": "predicate",
+          "named": true
+        },
+        {
+          "type": "push_statement",
           "named": true
         },
         {
@@ -1726,6 +1798,46 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "push_statement",
+    "named": true,
+    "fields": {
+      "array": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "at": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "item": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2103,7 +2215,15 @@
           "named": true
         },
         {
+          "type": "pop_statement",
+          "named": true
+        },
+        {
           "type": "predicate",
+          "named": true
+        },
+        {
+          "type": "push_statement",
           "named": true
         },
         {
@@ -2511,6 +2631,10 @@
     "named": false
   },
   {
+    "type": "at:",
+    "named": false
+  },
+  {
     "type": "break_statement",
     "named": true
   },
@@ -2627,6 +2751,10 @@
     "named": false
   },
   {
+    "type": "from:",
+    "named": false
+  },
+  {
     "type": "identifier",
     "named": true
   },
@@ -2679,6 +2807,14 @@
     "named": false
   },
   {
+    "type": "pop",
+    "named": false
+  },
+  {
+    "type": "push",
+    "named": false
+  },
+  {
     "type": "raw",
     "named": false
   },
@@ -2720,6 +2856,10 @@
   },
   {
     "type": "tablerow",
+    "named": false
+  },
+  {
+    "type": "to:",
     "named": false
   },
   {

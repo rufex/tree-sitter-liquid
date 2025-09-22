@@ -563,3 +563,106 @@ Result - bracket around identifier
     result_value: (identifier))
   (template_content))
 
+================================================================================
+Push - string
+================================================================================
+
+<html>
+  {% push "item_name" to:array %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (push_statement
+    item: (string)
+    array: (identifier))
+  (template_content))
+
+================================================================================
+Push - variable
+================================================================================
+
+<html>
+  {% push item to:array %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (push_statement
+    item: (identifier)
+    array: (identifier))
+  (template_content))
+
+================================================================================
+Push - at:beginning
+================================================================================
+
+<html>
+  {% push item to:array at:beginning %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (push_statement
+    item: (identifier)
+    array: (identifier)
+    at: (identifier))
+  (template_content))
+
+================================================================================
+Pop - string
+================================================================================
+
+<html>
+  {% pop "item_name" from:array %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (pop_statement
+    item: (string)
+    array: (identifier))
+  (template_content))
+
+================================================================================
+Pop - variable
+================================================================================
+
+<html>
+  {% pop item from:array %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (pop_statement
+    item: (identifier)
+    array: (identifier))
+  (template_content))
+
+================================================================================
+Pop - at:beginning
+================================================================================
+
+<html>
+  {% pop item from:array at:beginning %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (pop_statement
+    item: (identifier)
+    array: (identifier)
+    at: (identifier))
+  (template_content))
