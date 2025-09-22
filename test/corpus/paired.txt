@@ -703,3 +703,34 @@ If with Nested Output in Include
       property: (identifier)))))
  (template_content))
 
+==================
+Locale - string
+==================
+
+{% locale "en" %}
+  {% t "translation" %}
+{% endlocale %}
+
+---
+(program
+  (locale_statement
+    locale: (string)
+    (translation_expression
+      key: (string)))
+  (template_content))
+
+==================
+Locale - variable
+==================
+
+{% locale var %}
+  {% t "translation" %}
+{% endlocale %}
+
+---
+(program
+  (locale_statement
+    locale: (identifier)
+    (translation_expression
+      key: (string)))
+  (template_content))

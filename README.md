@@ -9,6 +9,7 @@ This grammar covers the following Silverfin specific Liquid tags and filters:
 - [Result](https://developer.silverfin.com/docs/result)
 - [Translations](https://developer.silverfin.com/docs/translations)
 - [Push & Pop](https://developer.silverfin.com/docs/push-pop)
+- [Locale](https://developer.silverfin.com/docs/locale)
 
 ## Mentions
 

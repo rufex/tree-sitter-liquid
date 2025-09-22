@@ -133,6 +133,7 @@ module.exports = grammar({
         $.raw_statement,
         $.style_statement,
         $.javascript_statement,
+        $.locale_statement,
       ),
 
     _untagged_paired_statement: ($) =>
@@ -544,6 +545,16 @@ module.exports = grammar({
         $.raw_content,
         optional($.raw_statement),
         tag('endraw'),
+      ),
+
+    locale_statement: ($) =>
+      seq(
+        tag(
+          'locale',
+          field('locale', choice($.string, $.identifier))
+        ),
+        repeat($._node),
+        tag('endlocale'),
       ),
 
     comment: ($) =>
