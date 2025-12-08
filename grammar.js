@@ -153,6 +153,7 @@ module.exports = grammar({
         $._literal,
         $.filter,
         $.identifier,
+        $.deferred_variable,
         $.predicate,
         $.access,
         output($._expression),
@@ -161,7 +162,7 @@ module.exports = grammar({
     translation_expression: ($) =>
       seq(
         't',
-        field('key', choice($.string, $.identifier)),
+        field('key', choice($.string, $.identifier, $.deferred_variable)),
         optional(
           field('argument',
             repeat($.argument),
@@ -169,12 +170,18 @@ module.exports = grammar({
         ),
       ),
 
+    deferred_variable: ($) =>
+      seq(
+        '[',
+        field('key', $.identifier),
+        ']',
+      ),
+
     // //////////////
     // Primitives //
     // //////////////
 
-    // identifier: (_) => /([a-zA-Z][0-9a-zA-Z_\?-]*)/,
-    identifier: (_) => /\[?([a-zA-Z][0-9a-zA-Z_\?-]*)\]?/,
+    identifier: (_) => /([a-zA-Z][0-9a-zA-Z_\?-]*)/,
 
     _literal: ($) => choice($.string, $.number, $.boolean),
 
@@ -248,7 +255,7 @@ module.exports = grammar({
     assignment_statement: ($) =>
       seq(
         'assign',
-        field('variable_name', $.identifier),
+        field('variable_name', choice($.identifier, $.deferred_variable)),
         '=',
         field('value', $._expression),
       ),
@@ -337,7 +344,7 @@ module.exports = grammar({
       ),
 
     access: ($) =>
-      seq(
+      prec(1, seq(
         field('receiver', choice($.access, $.identifier)),
         choice(
           seq(
@@ -350,11 +357,11 @@ module.exports = grammar({
             ']',
           ),
         ),
-      ),
+      )),
 
     argument_list: ($) =>
       sep1(
-        choice($._literal, $.identifier, $.access, $.argument),
+        choice($._literal, $.identifier, $.access, $.argument, $.deferred_variable),
         ',',
       ),
 
@@ -392,25 +399,25 @@ module.exports = grammar({
     result_statement: ($) =>
       seq(
         'result',
-        field('result_name', choice($._literal, $.identifier)),
+        field('result_name', choice($._literal, $.identifier, $.deferred_variable)),
         field('result_value', $._expression),
       ),
 
     push_statement: ($) =>
       seq(
         'push',
-        field('item', choice($.string, $.identifier)),
+        field('item', choice($.string, $.identifier, $.deferred_variable)),
         'to:',
-        field('array', $.identifier),
+        field('array', choice($.identifier, $.deferred_variable)),
         optional(seq('at:', field('at', $.identifier))),
       ),
 
     pop_statement: ($) =>
       seq(
         'pop',
-        field('item', choice($.string, $.identifier)),
+        field('item', choice($.string, $.identifier, $.deferred_variable)),
         'from:',
-        field('array', $.identifier),
+        field('array', choice($.identifier, $.deferred_variable)),
         optional(seq('at:', field('at', $.identifier))),
       ),
 
@@ -482,7 +489,7 @@ module.exports = grammar({
         1,
         seq(
           field(
-            'iterator', choice($.identifier, $.access, $.range),
+            'iterator', choice($.identifier, $.access, $.range, $.deferred_variable),
           ),
           optional(
             field('modifier', choice($.argument_list, $.identifier)),
@@ -707,7 +714,7 @@ function statements($, rules) {
 
     _capture: seq(
       rules.wrapper(
-        'capture', field('variable', $.identifier),
+        'capture', field('variable', choice($.identifier, $.deferred_variable)),
       ),
 
       field('value', alias(repeat(rules.node), $.block)),

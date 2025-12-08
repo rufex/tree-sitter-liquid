@@ -28,7 +28,6 @@ Literal with variable
   (identifier)
   (template_content))
 
-
 ================================================================================
 Assignment - string
 ================================================================================
@@ -52,23 +51,6 @@ Assignment - variable
 
 <html>
   {% assign foo = bar %}
-</html>
-
---------------------------------------------------------------------------------
-
-(program
-  (template_content)
-  (assignment_statement
-    variable_name: (identifier)
-    value: (identifier))
-  (template_content))
-
-================================================================================
-Assignment - bracket around identifier
-================================================================================
-
-<html>
-  {% assign [foo] = [bar] %}
 </html>
 
 --------------------------------------------------------------------------------
@@ -535,23 +517,6 @@ Result - variable
 
 <html>
   {% result foo bar %}
-</html>
-
---------------------------------------------------------------------------------
-
-(program
-  (template_content)
-  (result_statement
-    result_name: (identifier)
-    result_value: (identifier))
-  (template_content))
-
-================================================================================
-Result - bracket around identifier
-================================================================================
-
-<html>
-  {% result [foo] [bar] %}
 </html>
 
 --------------------------------------------------------------------------------

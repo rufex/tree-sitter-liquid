@@ -1,0 +1,298 @@
+================================================================================
+Deferred variable in output
+================================================================================
+
+<html>
+  {{ [var] }}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (deferred_variable
+    key: (identifier))
+  (template_content))
+
+================================================================================
+Assignment with deferred variable name and value
+================================================================================
+
+<html>
+  {% assign [foo] = [bar] %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (assignment_statement
+    variable_name: (deferred_variable
+      key: (identifier))
+    value: (deferred_variable
+      key: (identifier)))
+  (template_content))
+
+================================================================================
+Assignment with deferred variable in value
+================================================================================
+
+<html>
+  {% assign foo = [bar] %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (assignment_statement
+    variable_name: (identifier)
+    value: (deferred_variable
+      key: (identifier)))
+  (template_content))
+
+================================================================================
+Capture with deferred variable name
+================================================================================
+
+<html>
+  {%- capture [title] -%}Text{%- endcapture %}
+</html>
+
+---
+  (program
+   (template_content)
+   (capture_statement
+    variable: (deferred_variable
+      key: (identifier))
+    value:
+      (block
+        (template_content)))
+   (template_content))
+
+================================================================================
+Capture with deferred variable in body
+================================================================================
+
+<html>
+  {% capture foo %}{{ [bar] }}{% endcapture %}
+</html>
+
+---
+  (program
+   (template_content)
+   (capture_statement
+    variable: (identifier)
+    value:
+      (block
+        (deferred_variable
+          key: (identifier))))
+   (template_content))
+
+================================================================================
+Result with deferred variables
+================================================================================
+
+<html>
+  {% result [foo] [bar] %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (result_statement
+    result_name: (deferred_variable
+      key: (identifier))
+    result_value: (deferred_variable
+      key: (identifier)))
+  (template_content))
+
+================================================================================
+Deferred variable in for loop iterator
+================================================================================
+
+<html>
+  {% for item in [items] %}
+    {{ item }}
+  {% endfor %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (for_loop_statement
+    item: (identifier)
+    iterator: (deferred_variable
+      key: (identifier))
+    body: (block
+      (identifier)))
+  (template_content))
+
+================================================================================
+If with deferred variable
+================================================================================
+
+<html>
+  {% if [condition] %}
+    yes
+  {% endif %}
+</html>
+
+---
+  (program
+   (template_content)
+   (if_statement
+    condition: (deferred_variable
+      key: (identifier))
+    consequence: (block
+      (template_content)))
+   (template_content))
+
+================================================================================
+Unless with deferred variable
+================================================================================
+
+<html>
+  {% unless [condition] %}
+    no
+  {% endunless %}
+</html>
+
+---
+  (program
+   (template_content)
+   (unless_statement
+    condition: (deferred_variable
+      key: (identifier))
+    consequence: (block
+      (template_content)))
+   (template_content))
+
+================================================================================
+Deferred variable with filter
+================================================================================
+
+<html>
+  {{ [var] | upcase }}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (filter
+    body: (deferred_variable
+      key: (identifier))
+    name: (identifier))
+  (template_content))
+
+================================================================================
+Deferred variable as filter argument
+================================================================================
+
+<html>
+  {{ var | split: [separator] }}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (filter
+    body: (identifier)
+    name: (identifier)
+    (argument_list
+      (deferred_variable
+        key: (identifier))))
+  (template_content))
+
+================================================================================
+Push with deferred variable item
+================================================================================
+
+<html>
+  {% push [item] to:array %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (push_statement
+    item: (deferred_variable
+      key: (identifier))
+    array: (identifier))
+  (template_content))
+
+================================================================================
+Push with deferred variable array
+================================================================================
+
+<html>
+  {% push "item" to:[array_var] %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (push_statement
+    item: (string)
+    array: (deferred_variable
+      key: (identifier)))
+  (template_content))
+
+================================================================================
+Pop with deferred variable item
+================================================================================
+
+<html>
+  {% pop [item] from:array %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (pop_statement
+    item: (deferred_variable
+      key: (identifier))
+    array: (identifier))
+  (template_content))
+
+================================================================================
+Pop with deferred variable array
+================================================================================
+
+<html>
+  {% pop "item" from:[array_var] %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (pop_statement
+    item: (string)
+    array: (deferred_variable
+      key: (identifier)))
+  (template_content))
+
+================================================================================
+Translation with deferred variable key
+================================================================================
+
+<html>
+  {% t [translation_key] %}
+</html>
+
+--------------------------------------------------------------------------------
+
+(program
+  (template_content)
+  (translation_expression
+    key: (deferred_variable
+      key: (identifier)))
+  (template_content))

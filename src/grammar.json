@@ -424,6 +424,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "deferred_variable"
+        },
+        {
+          "type": "SYMBOL",
           "name": "predicate"
         },
         {
@@ -487,6 +491,10 @@
               {
                 "type": "SYMBOL",
                 "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "deferred_variable"
               }
             ]
           }
@@ -512,9 +520,30 @@
         }
       ]
     },
+    "deferred_variable": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "FIELD",
+          "name": "key",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
     "identifier": {
       "type": "PATTERN",
-      "value": "\\[?([a-zA-Z][0-9a-zA-Z_\\?-]*)\\]?"
+      "value": "([a-zA-Z][0-9a-zA-Z_\\?-]*)"
     },
     "_literal": {
       "type": "CHOICE",
@@ -1216,8 +1245,17 @@
           "type": "FIELD",
           "name": "variable_name",
           "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "deferred_variable"
+              }
+            ]
           }
         },
         {
@@ -1591,78 +1629,82 @@
       ]
     },
     "access": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "receiver",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "access"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "identifier"
-              }
-            ]
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "receiver",
+            "content": {
+              "type": "CHOICE",
               "members": [
                 {
-                  "type": "STRING",
-                  "value": "."
+                  "type": "SYMBOL",
+                  "name": "access"
                 },
                 {
-                  "type": "FIELD",
-                  "name": "property",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "identifier"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "["
-                },
-                {
-                  "type": "FIELD",
-                  "name": "property",
-                  "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "number"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "string"
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "STRING",
-                  "value": "]"
+                  "type": "SYMBOL",
+                  "name": "identifier"
                 }
               ]
             }
-          ]
-        }
-      ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "."
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "property",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "identifier"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "["
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "property",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "number"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "string"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "]"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "argument_list": {
       "type": "SEQ",
@@ -1685,6 +1727,10 @@
             {
               "type": "SYMBOL",
               "name": "argument"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "deferred_variable"
             }
           ]
         },
@@ -1715,6 +1761,10 @@
                   {
                     "type": "SYMBOL",
                     "name": "argument"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "deferred_variable"
                   }
                 ]
               }
@@ -1889,6 +1939,10 @@
               {
                 "type": "SYMBOL",
                 "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "deferred_variable"
               }
             ]
           }
@@ -1923,6 +1977,10 @@
               {
                 "type": "SYMBOL",
                 "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "deferred_variable"
               }
             ]
           }
@@ -1935,8 +1993,17 @@
           "type": "FIELD",
           "name": "array",
           "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "deferred_variable"
+              }
+            ]
           }
         },
         {
@@ -1986,6 +2053,10 @@
               {
                 "type": "SYMBOL",
                 "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "deferred_variable"
               }
             ]
           }
@@ -1998,8 +2069,17 @@
           "type": "FIELD",
           "name": "array",
           "content": {
-            "type": "SYMBOL",
-            "name": "identifier"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "identifier"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "deferred_variable"
+              }
+            ]
           }
         },
         {
@@ -2768,8 +2848,17 @@
               "type": "FIELD",
               "name": "variable",
               "content": {
-                "type": "SYMBOL",
-                "name": "identifier"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "deferred_variable"
+                  }
+                ]
               }
             },
             {
@@ -3618,8 +3707,17 @@
               "type": "FIELD",
               "name": "variable",
               "content": {
-                "type": "SYMBOL",
-                "name": "identifier"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "identifier"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "deferred_variable"
+                  }
+                ]
               }
             }
           ]
@@ -3888,6 +3986,10 @@
                 {
                   "type": "SYMBOL",
                   "name": "range"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "deferred_variable"
                 }
               ]
             }
