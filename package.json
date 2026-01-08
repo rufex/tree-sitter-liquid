@@ -48,7 +48,7 @@
     "test": "tree-sitter test",
     "lint": "eslint grammar.js",
     "install": "node-gyp-build",
-    "prebuildify": "prebuildify --napi --strip"
+    "prebuildify": "prebuildify --napi --strip --target 22.0.0 --arch x64 --arch arm64"
   },
   "tree-sitter": [
     {

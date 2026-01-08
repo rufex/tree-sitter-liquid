@@ -1,0 +1,104 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate parser
+        run: npm run build
+
+      - name: Build prebuilds
+        run: |
+          npm run prebuildify
+          echo "Generated prebuilds:"
+          find prebuilds/ -type f -ls
+
+      - name: Upload prebuilds
+        uses: actions/upload-artifact@v4
+        with:
+          name: prebuilds-${{ matrix.os }}
+          path: prebuilds/
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts/
+
+      - name: Organize prebuilds
+        run: |
+          mkdir -p release-artifacts
+          echo "Artifacts structure:"
+          find artifacts/ -type f -ls
+          echo "Copying .node files:"
+          find artifacts/ -name "*.node" -exec cp {} release-artifacts/ \;
+          echo "Final release artifacts:"
+          ls -la release-artifacts/
+
+      - name: Generate checksums
+        run: |
+          cd release-artifacts
+          sha256sum *.node > checksums.txt
+          cat checksums.txt
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            release-artifacts/*
+          body: |
+            ## Tree-Sitter Liquid Parser Release ${{ github.ref_name }}
+
+            This release includes prebuilt binaries for multiple platforms:
+
+            ### Available Binaries
+            - `tree_sitter_liquid_binding.node` files for Node.js integration
+            - Linux (x64, arm64), macOS (x64, arm64)
+
+            ### Installation
+
+            ```bash
+            npm install github:rufex/tree-sitter-liquid#${{ github.ref_name }}
+            ```
+
+            Or download binaries directly:
+            ```bash
+            curl -L -o tree_sitter_liquid_binding.node \
+              "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/tree_sitter_liquid_binding-{platform}-{arch}.node"
+            ```
+
+            ### Checksums
+            See `checksums.txt` for SHA256 hashes of all binaries.
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
