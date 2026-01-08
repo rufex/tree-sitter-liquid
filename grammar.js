@@ -558,7 +558,7 @@ module.exports = grammar({
       seq(
         tag(
           'locale',
-          field('locale', choice($.string, $.identifier))
+          field('locale', choice($.string, $.identifier)),
         ),
         repeat($._node),
         tag('endlocale'),
