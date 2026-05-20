@@ -2,6 +2,8 @@
 
 A grammar of [Silverfin's Liquid templating language](https://developer.silverfin.com/docs/where-to-start) to be used with [tree-sitter](https://tree-sitter.github.io/tree-sitter/).
 
+It's main usecase is [Silverfin Language Server](https://github.com/silverfin/silverfin-ls), although it can be used standlone together with tree-sitter CLI.
+
 ## Covered
 
 This grammar covers the following Silverfin specific Liquid tags and filters:

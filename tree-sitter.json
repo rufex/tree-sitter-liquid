@@ -12,7 +12,7 @@
     }
   ],
   "metadata": {
-    "version": "0.3.0",
+    "version": "0.7.0",
     "license": "MIT",
     "description": "liquid",
     "authors": [
@@ -21,7 +21,7 @@
       }
     ],
     "links": {
-      "repository": "https://github.com/rufex/tree-sitter-liquid"
+      "repository": "https://github.com/silverfin/tree-sitter-liquid"
     }
   },
   "bindings": {
